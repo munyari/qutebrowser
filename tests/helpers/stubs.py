@@ -30,6 +30,7 @@ from PyQt5.QtWidgets import QCommonStyle, QWidget
 
 from qutebrowser.browser.webkit import webview
 from qutebrowser.config import configexc
+from qutebrowser.utils import usertypes
 
 
 class FakeNetworkCache(QAbstractNetworkCache):
@@ -222,7 +223,7 @@ class FakeWebView(QWidget):
         super().__init__()
         self.progress = 0
         self.scroll_pos = (-1, -1)
-        self.load_status = webview.LoadStatus.none
+        self.load_status = usertypes.LoadStatus.none
         self.tab_id = 0
         self.cur_url = FakeUrl()
 
