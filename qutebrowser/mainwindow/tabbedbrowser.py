@@ -183,9 +183,9 @@ class TabbedBrowser(tabwidget.TabWidget):
         # https://github.com/The-Compiler/qutebrowser/issues/1579
         # tab.statusBarMessage.connect(
         #     self._filter.create(self.cur_statusbar_message, tab))
-        tab.scroll_pos_changed.connect(
+        tab.scroll.perc_changed.connect(
             self._filter.create(self.cur_scroll_perc_changed, tab))
-        tab.scroll_pos_changed.connect(self.on_scroll_pos_changed)
+        tab.scroll.perc_changed.connect(self.on_scroll_pos_changed)
         tab.url_text_changed.connect(
             self._filter.create(self.cur_url_text_changed, tab))
         tab.load_status_changed.connect(
@@ -654,7 +654,7 @@ class TabbedBrowser(tabwidget.TabWidget):
             if key != "'":
                 message.error(self._win_id, "Failed to set mark: url invalid")
             return
-        point = self.currentWidget().page().currentFrame().scrollPosition()
+        point = self.currentWidget().scroll.pos_px()
 
         if key.isupper():
             self._global_marks[key] = point, url
@@ -671,7 +671,7 @@ class TabbedBrowser(tabwidget.TabWidget):
         """
         # consider urls that differ only in fragment to be identical
         urlkey = self.current_url().adjusted(QUrl.RemoveFragment)
-        frame = self.currentWidget().page().currentFrame()
+        tab = self.currentWidget()
 
         if key.isupper() and key in self._global_marks:
             point, url = self._global_marks[key]
@@ -680,7 +680,7 @@ class TabbedBrowser(tabwidget.TabWidget):
             def callback(ok):
                 if ok:
                     self.cur_load_finished.disconnect(callback)
-                    frame.setScrollPosition(point)
+                    tab.scroll.to_point(point)
 
             self.openurl(url, newtab=False)
             self.cur_load_finished.connect(callback)
@@ -692,6 +692,6 @@ class TabbedBrowser(tabwidget.TabWidget):
             # "'" would just jump to the current position every time
             self.set_mark("'")
 
-            frame.setScrollPosition(point)
+            tab.scroll.to_point(point)
         else:
             message.error(self._win_id, "Mark {} is not set".format(key))
