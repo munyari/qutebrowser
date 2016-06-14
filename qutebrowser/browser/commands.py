@@ -1624,13 +1624,13 @@ class CommandDispatcher:
                        modes=[KeyMode.caret], scope='window')
     def move_to_start_of_document(self):
         """Move the cursor or selection to the start of the document."""
-        self._current_widget().caret.move_to_start_of_document(count)
+        self._current_widget().caret.move_to_start_of_document()
 
     @cmdutils.register(instance='command-dispatcher', hide=True,
                        modes=[KeyMode.caret], scope='window')
     def move_to_end_of_document(self):
         """Move the cursor or selection to the end of the document."""
-        self._current_widget().caret.move_to_end_of_document(count)
+        self._current_widget().caret.move_to_end_of_document()
 
     @cmdutils.register(instance='command-dispatcher', scope='window')
     def yank_selected(self, sel=False, keep=False):
