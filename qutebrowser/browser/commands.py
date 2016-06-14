@@ -1100,8 +1100,8 @@ class CommandDispatcher:
         Args:
             tab: Load the selected link in a new tab.
         """
-        tab = self._current_widget()
-        if not tab.has_selection():
+        widget = self._current_widget()
+        if not widget.has_selection():
             return
         if QWebSettings.globalSettings().testAttribute(
                 QWebSettings.JavascriptEnabled):
@@ -1112,7 +1112,7 @@ class CommandDispatcher:
         else:
             try:
                 selected_element = xml.etree.ElementTree.fromstring(
-                    '<html>' + tab.selection(html=True) + '</html>').find('a')
+                    '<html>' + widget.selection(html=True) + '</html>').find('a')
             except xml.etree.ElementTree.ParseError:
                 raise cmdexc.CommandError('Could not parse selected element!')
 
