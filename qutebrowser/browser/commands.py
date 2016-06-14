@@ -1567,13 +1567,13 @@ class CommandDispatcher:
                        modes=[KeyMode.caret], scope='window')
     def move_to_start_of_line(self):
         """Move the cursor or selection to the start of the line."""
-        self._current_widget().caret.move_to_start_of_line(count)
+        self._current_widget().caret.move_to_start_of_line()
 
     @cmdutils.register(instance='command-dispatcher', hide=True,
                        modes=[KeyMode.caret], scope='window')
     def move_to_end_of_line(self):
         """Move the cursor or selection to the end of line."""
-        self._current_widget().caret.move_to_end_of_line(count)
+        self._current_widget().caret.move_to_end_of_line()
 
     @cmdutils.register(instance='command-dispatcher', hide=True,
                        modes=[KeyMode.caret], scope='window')

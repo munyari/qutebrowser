@@ -210,7 +210,7 @@ class WebViewCaret(tab.AbstractCaret):
         mainwindow.status.set_mode_active(usertypes.KeyMode.caret, True)
 
     def drop_selection(self):
-        self._current_widget().triggerPageAction(QWebPage.MoveToNextChar)
+        self.widget.triggerPageAction(QWebPage.MoveToNextChar)
 
 
 class WebViewScroller(tab.AbstractScroller):
