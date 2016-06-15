@@ -244,7 +244,7 @@ class WebViewScroller(tab.AbstractScroller):
             if y == 0:
                 pass
             elif y < 0:
-                self.page_up(count=y)
+                self.page_up(count=-y)
             elif y > 0:
                 self.page_down(count=y)
             y = 0
@@ -273,6 +273,9 @@ class WebViewScroller(tab.AbstractScroller):
         press_evt = QKeyEvent(QEvent.KeyPress, key, Qt.NoModifier, 0, 0, 0)
         release_evt = QKeyEvent(QEvent.KeyRelease, key, Qt.NoModifier, 0, 0, 0)
         getter = None if getter_name is None else getattr(frame, getter_name)
+
+        # FIXME needed?
+        # self.widget.setFocus()
 
         for _ in range(count):
             # Abort scrolling if the minimum/maximum was reached.
