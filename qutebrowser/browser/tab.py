@@ -87,8 +87,8 @@ class AbstractZoom:
     def on_config_changed(self, section, option):
         if section == 'ui' and option in ('zoom-levels', 'default-zoom'):
             if not self._default_zoom_changed:
-                self.setZoomFactor(float(config.get('ui', 'default-zoom')) /
-                                   100)
+                factor = float(config.get('ui', 'default-zoom')) / 100
+                self._set_factor_internal(factor)
             self._default_zoom_changed = False
             self._init_neighborlist()
 
