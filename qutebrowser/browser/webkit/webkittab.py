@@ -260,12 +260,13 @@ class WebViewScroller(tab.AbstractScroller):
             self.bottom()
         else:
             for val, orientation in [(x, Qt.Horizontal), (y, Qt.Vertical)]:
-                perc = qtutils.check_overflow(val, 'int', fatal=False)
-                frame = self.widget.page().mainFrame()
-                m = frame.scrollBarMaximum(orientation)
-                if m == 0:
-                    continue
-                frame.setScrollBarValue(orientation, int(m * val / 100))
+                if val is not None:
+                    perc = qtutils.check_overflow(val, 'int', fatal=False)
+                    frame = self.widget.page().mainFrame()
+                    m = frame.scrollBarMaximum(orientation)
+                    if m == 0:
+                        continue
+                    frame.setScrollBarValue(orientation, int(m * val / 100))
 
     def _key_press(self, key, count=1, getter_name=None, direction=None):
         frame = self.widget.page().mainFrame()
