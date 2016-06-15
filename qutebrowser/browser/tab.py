@@ -56,7 +56,7 @@ class WrapperLayout(QLayout):
         self._widget.setGeometry(r)
 
 
-class AbstractZoom:
+class AbstractZoom(QObject):
 
     """Attribute of AbstractTab for controlling zoom.
 
@@ -65,7 +65,8 @@ class AbstractZoom:
         _default_zoom_changed: Whether the zoom was changed from the default.
     """
 
-    def __init__(self, win_id):
+    def __init__(self, win_id, parent=None):
+        super().__init__(parent)
         self.widget = None
         self._win_id = win_id
         self._default_zoom_changed = False

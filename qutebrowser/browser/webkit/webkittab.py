@@ -363,7 +363,7 @@ class WebViewTab(tab.AbstractTab):
         self.history = WebViewHistory(self)
         self.scroll = WebViewScroller(parent=self)
         self.caret = WebViewCaret(win_id=win_id, tab=self, parent=self)
-        self.zoom = WebViewZoom(win_id=win_id)
+        self.zoom = WebViewZoom(win_id=win_id, parent=self)
         self._set_widget(widget)
         self._connect_signals()
         self.zoom._set_default_zoom()

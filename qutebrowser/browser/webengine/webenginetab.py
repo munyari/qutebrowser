@@ -93,7 +93,7 @@ class WebEngineViewTab(tab.AbstractTab):
         self.history = WebEngineHistory(self)
         self.scroll = WebEngineScroller()
         self.caret = WebEngineCaret(win_id=win_id, tab=self, parent=self)
-        self.zoom = WebEngineZoom(win_id=win_id)
+        self.zoom = WebEngineZoom(win_id=win_id, parent=self)
         self._set_widget(widget)
         self._connect_signals()
 
