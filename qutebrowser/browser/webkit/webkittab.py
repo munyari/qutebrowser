@@ -233,7 +233,7 @@ class WebViewScroller(tab.AbstractScroller):
     def to_point(self, point):
         self.widget.page().mainFrame().setScrollPosition(point)
 
-    def delta(x=0, y=0):
+    def delta(self, x=0, y=0):
         qtutils.check_overflow(x, 'int')
         qtutils.check_overflow(y, 'int')
         self.widget.page().mainFrame().scroll(x, y)
