@@ -705,7 +705,7 @@ class CommandDispatcher:
         try:
             tab.zoom.set_factor(float(level) / 100)
         except ValueError:
-            raise cmdexc.CommandError("Can't zoom to {}%".format(level))
+            raise cmdexc.CommandError("Can't zoom {}%!".format(level))
         message.info(self._win_id, "Zoom level: {}%".format(level))
 
     @cmdutils.register(instance='command-dispatcher', scope='window')
