@@ -250,7 +250,7 @@ class WebViewScroller(tab.AbstractScroller):
             y = 0
         if x == 0 and y == 0:
             return
-        size = frame.geometry()
+        size = self.widget.page().mainFrame().geometry()
         self.delta(x * size.width(), y * size.height())
 
     def to_perc(self, x=None, y=None):
@@ -276,7 +276,8 @@ class WebViewScroller(tab.AbstractScroller):
 
         for _ in range(count):
             # Abort scrolling if the minimum/maximum was reached.
-            if frame.scrollBarValue(direction) == getter(direction):
+            if (getter is not None and
+                    frame.scrollBarValue(direction) == getter(direction)):
                 return
             self.widget.keyPressEvent(press_evt)
             self.widget.keyReleaseEvent(release_evt)
