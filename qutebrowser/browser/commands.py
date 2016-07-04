@@ -1027,9 +1027,9 @@ class CommandDispatcher:
         if webview is None:
             mainframe = None
         else:
-            if webview.hasSelection():
-                env['QUTE_SELECTED_TEXT'] = webview.selection()
-                env['QUTE_SELECTED_HTML'] = webview.selection(html=True)
+            if webview.caret.has_selection():
+                env['QUTE_SELECTED_TEXT'] = webview.caret.selection()
+                env['QUTE_SELECTED_HTML'] = webview.caret.selection(html=True)
             mainframe = webview.page().mainFrame()
 
         try:
@@ -1117,9 +1117,10 @@ class CommandDispatcher:
             widget.run_js_async(
                 'window.getSelection().anchorNode.parentNode.click()')
         else:
+            selection = widget.caret.selection(html=True)
             try:
                 selected_element = xml.etree.ElementTree.fromstring(
-                    '<html>' + widget.selection(html=True) + '</html>').find('a')
+                    '<html>{}</html>'.format(selection)).find('a')
             except xml.etree.ElementTree.ParseError:
                 raise cmdexc.CommandError('Could not parse selected element!')
 

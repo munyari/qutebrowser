@@ -188,9 +188,8 @@ class AbstractCaret(QObject):
 
     """Attribute of AbstractTab for caret browsing."""
 
-    def __init__(self, win_id, tab, parent=None):
+    def __init__(self, win_id, parent=None):
         super().__init__(parent)
-        self._tab = tab
         self._win_id = win_id
         self.widget = None
         self.selection_enabled = False
@@ -396,7 +395,7 @@ class AbstractTab(QWidget):
         super().__init__(parent)
         # self.history = AbstractHistory(self)
         # self.scroll = AbstractScroller(parent=self)
-        # self.caret = AbstractCaret(win_id=win_id, tab=self, parent=self)
+        # self.caret = AbstractCaret(win_id=win_id, parent=self)
         # self.zoom = AbstractZoom(win_id=win_id)
         # self.search = AbstractSearch(parent=self)
         self._layout = None

@@ -80,7 +80,7 @@ class WebViewCaret(tab.AbstractCaret):
 
         settings = self.widget.settings()
         settings.setAttribute(QWebSettings.CaretBrowsingEnabled, True)
-        self.selection_enabled = bool(self._tab.selection())
+        self.selection_enabled = bool(self.selection())
 
         if self.widget.isVisible():
             # Sometimes the caret isn't immediately visible, but unfocusing
@@ -93,7 +93,7 @@ class WebViewCaret(tab.AbstractCaret):
             #
             # Note: We can't use hasSelection() here, as that's always
             # true in caret mode.
-            if not self._tab.selection():
+            if not self.selection():
                 self.widget.page().currentFrame().evaluateJavaScript(
                     utils.read_file('javascript/position_caret.js'))
 
@@ -414,7 +414,7 @@ class WebViewTab(tab.AbstractTab):
         widget = webview.WebView(win_id, self.tab_id, tab=self)
         self.history = WebViewHistory(self)
         self.scroll = WebViewScroller(parent=self)
-        self.caret = WebViewCaret(win_id=win_id, tab=self, parent=self)
+        self.caret = WebViewCaret(win_id=win_id, parent=self)
         self.zoom = WebViewZoom(win_id=win_id, parent=self)
         self.search = WebViewSearch(parent=self)
         self._set_widget(widget)
