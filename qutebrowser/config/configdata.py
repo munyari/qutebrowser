@@ -888,7 +888,7 @@ def data(readonly=False):
             ('chars',
              SettingValue(typ.UniqueCharString(minlen=2, completions=[
                  ('asdfghjkl', "Home row"),
-                 ('dhtnaoeu', "Home row (Dvorak)"),
+                 ('aoeuidnths', "Home row (Dvorak)"),
                  ('abcdefghijklmnopqrstuvwxyz', "All letters"),
              ]), 'asdfghjkl'),
              "Chars used for hint strings."),
@@ -1472,6 +1472,7 @@ KEY_DATA = collections.OrderedDict([
         ('hint --rapid links tab-bg', [';r']),
         ('hint --rapid links window', [';R']),
         ('hint links download', [';d']),
+        ('hint inputs', [';t']),
         ('scroll left', ['h']),
         ('scroll down', ['j']),
         ('scroll up', ['k']),

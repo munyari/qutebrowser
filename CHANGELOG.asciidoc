@@ -21,6 +21,32 @@ Added
 ~~~~~
 
 - New `{host}` replacement for tab- and window titles which evaluates to the current host.
+- Add new default binding `;t` for `:hint input`.
+
+Changed
+~~~~~~~
+
+- `:scroll-perc` now prefers a count over the argument given to it, which means
+  `gg` can be used with a count.
+- Aliases can now use `;;` to have an alias which executed multiple commands.
+- `:edit-url` now does nothing if the URL isn't changed in the spawned editor.
+
+Fixed
+-----
+
+- Fix crash when downloading with a full disk
+
+Removed
+------
+
+- `:edit-url` now doesn't accept a count anymore as its behavior was confusing
+  and it doesn't make much sense to add a count.
+
+Fixed
+-----
+
+- Using `:jump-mark` (e.g. `''`) when the current URL is invalid doesn't crash
+  anymore.
 
 v0.7.0
 ------
@@ -46,6 +72,7 @@ Added
 - New `hints -> find-implementation` to select which implementation (JS/Python)
   should be used to find hints on a page. The `javascript` implementation is
   better, but slower.
+- New `inputs` group for `:hint` to hint text input fields.
 
 Changed
 ~~~~~~~
