@@ -35,7 +35,13 @@ class WebEngineCaret(tab.AbstractCaret):
 
     ## TODO
 
-    pass
+    def has_selection(self):
+        return self.widget.hasSelection()
+
+    def selection(self, html=False):
+        if html:
+            raise NotImplementedError
+        return self.widget.selectedText()
 
 
 class WebEngineScroller(tab.AbstractScroller):
@@ -143,14 +149,6 @@ class WebEngineViewTab(tab.AbstractTab):
 
     def icon(self):
         return self._widget.icon()
-
-    def has_selection(self):
-        return self._widget.hasSelection()
-
-    def selection(self, html=False):
-        if html:
-            raise NotImplementedError
-        return self._widget.selectedText()
 
     def _connect_signals(self):
         view = self._widget

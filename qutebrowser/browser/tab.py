@@ -216,6 +216,12 @@ class AbstractCaret(QObject):
     def drop_selection(self):
         raise NotImplementedError
 
+    def has_selection(self):
+        raise NotImplementedError
+
+    def selection(self, html=False):
+        raise NotImplementedError
+
 
 class AbstractScroller(QObject):
 
@@ -410,12 +416,6 @@ class AbstractTab(QWidget):
         raise NotImplementedError
 
     def icon(self):
-        raise NotImplementedError
-
-    def has_selection(self):
-        raise NotImplementedError
-
-    def selection(self, html=False):
         raise NotImplementedError
 
     def __repr__(self):

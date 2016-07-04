@@ -1108,7 +1108,7 @@ class CommandDispatcher:
             tab: Load the selected link in a new tab.
         """
         widget = self._current_widget()
-        if not widget.has_selection():
+        if not widget.caret.has_selection():
             return
         if QWebSettings.globalSettings().testAttribute(
                 QWebSettings.JavascriptEnabled):
@@ -1646,9 +1646,9 @@ class CommandDispatcher:
             sel: Use the primary selection instead of the clipboard.
             keep: If given, stay in visual mode after yanking.
         """
-        tab = self._current_widget()
-        s = tab.selection()
-        if not tab.has_selection() or len(s) == 0:
+        caret = self._current_widget().caret
+        s = caret.selection()
+        if not caret.has_selection() or len(s) == 0:
             message.info(self._win_id, "Nothing to yank")
             return
 

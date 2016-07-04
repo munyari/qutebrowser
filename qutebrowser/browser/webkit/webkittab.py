@@ -212,6 +212,14 @@ class WebViewCaret(tab.AbstractCaret):
     def drop_selection(self):
         self.widget.triggerPageAction(QWebPage.MoveToNextChar)
 
+    def has_selection(self):
+        return self.widget.hasSelection()
+
+    def selection(self, html=False):
+        if html:
+            return self.widget.selectedHtml()
+        return self.widget.selectedText()
+
 
 class WebViewZoom(tab.AbstractZoom):
 
@@ -417,14 +425,6 @@ class WebViewTab(tab.AbstractTab):
 
     def title(self):
         return self._widget.title()
-
-    def has_selection(self):
-        return self._widget.hasSelection()
-
-    def selection(self, html=False):
-        if html:
-            return self._widget.selectedHtml()
-        return self._widget.selectedText()
 
     def _connect_signals(self):
         view = self._widget
